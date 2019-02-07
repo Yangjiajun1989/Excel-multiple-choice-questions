@@ -1,0 +1,389 @@
+Private Sub CommandButton1_Click()
+Dim RwIndex, RwIndex1, ColIndex
+
+Sheet3.Cells.ClearContents
+Sheet4.Cells.ClearContents
+Sheet5.Cells.ClearContents
+Sheet6.Cells.ClearContents
+Sheet7.Cells.ClearContents
+Sheet8.Cells.ClearContents
+
+Sheet1.Cells(2, 2) = 0
+Sheet1.Cells(2, 3) = 0
+Sheet1.Cells(2, 4) = 0
+Sheet1.Cells(2, 5) = "专业题库提取中⋯⋯！"
+
+'变电题库提取
+If OptionButton1.Value = True Then
+    Sheet1.Cells(2, 1) = "变电" & Chr(10) & "安规"
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet11.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet6.Cells(1, 1) = "题号"
+        Sheet6.Cells(1, 2) = "题目"
+        Sheet6.Cells(1, 3) = "选1"
+        Sheet6.Cells(1, 4) = "选2"
+        Sheet6.Cells(1, 5) = "选3"
+        Sheet6.Cells(1, 6) = "选4"
+        Sheet6.Cells(1, 7) = "选5"
+        Sheet6.Cells(1, 8) = "答案"
+        If Sheet11.Cells(RwIndex, 1) = "变电" Then
+            For ColIndex = 2 To 8
+                Sheet6.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet6.Cells(RwIndex1 + 1, ColIndex) = Sheet11.Cells(RwIndex, ColIndex)
+               
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+    
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet12.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet7.Cells(1, 1) = "题号"
+        Sheet7.Cells(1, 2) = "题目"
+        Sheet7.Cells(1, 3) = "选1"
+        Sheet7.Cells(1, 4) = "选2"
+        Sheet7.Cells(1, 5) = "选3"
+        Sheet7.Cells(1, 6) = "选4"
+        Sheet7.Cells(1, 7) = "选5"
+        Sheet7.Cells(1, 8) = "答案"
+        If Sheet12.Cells(RwIndex, 1) = "变电" Then
+            For ColIndex = 2 To 8
+                Sheet7.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet7.Cells(RwIndex1 + 1, ColIndex) = Sheet12.Cells(RwIndex, ColIndex)
+                
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet13.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet8.Cells(1, 1) = "题号"
+        Sheet8.Cells(1, 2) = "题目"
+        Sheet8.Cells(1, 3) = "答案"
+        If Sheet13.Cells(RwIndex, 1) = "变电" Then
+            For ColIndex = 2 To 3
+                Sheet8.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet8.Cells(RwIndex1 + 1, ColIndex) = Sheet13.Cells(RwIndex, ColIndex)
+                
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+End If
+
+'线路题库提取
+If OptionButton2.Value = True Then
+    Sheet1.Cells(2, 1) = "线路" & Chr(10) & "安规"
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet11.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet6.Cells(1, 1) = "题号"
+        Sheet6.Cells(1, 2) = "题目"
+        Sheet6.Cells(1, 3) = "选1"
+        Sheet6.Cells(1, 4) = "选2"
+        Sheet6.Cells(1, 5) = "选3"
+        Sheet6.Cells(1, 6) = "选4"
+        Sheet6.Cells(1, 7) = "选5"
+        Sheet6.Cells(1, 8) = "答案"
+        If Sheet11.Cells(RwIndex, 1) = "线路" Then
+            For ColIndex = 2 To 8
+                Sheet6.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet6.Cells(RwIndex1 + 1, ColIndex) = Sheet11.Cells(RwIndex, ColIndex)
+               
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+    
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet12.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet7.Cells(1, 1) = "题号"
+        Sheet7.Cells(1, 2) = "题目"
+        Sheet7.Cells(1, 3) = "选1"
+        Sheet7.Cells(1, 4) = "选2"
+        Sheet7.Cells(1, 5) = "选3"
+        Sheet7.Cells(1, 6) = "选4"
+        Sheet7.Cells(1, 7) = "选5"
+        Sheet7.Cells(1, 8) = "答案"
+        If Sheet12.Cells(RwIndex, 1) = "线路" Then
+            For ColIndex = 2 To 8
+                Sheet7.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet7.Cells(RwIndex1 + 1, ColIndex) = Sheet12.Cells(RwIndex, ColIndex)
+                
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet13.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet8.Cells(1, 1) = "题号"
+        Sheet8.Cells(1, 2) = "题目"
+        Sheet8.Cells(1, 3) = "答案"
+        If Sheet13.Cells(RwIndex, 1) = "线路" Then
+            For ColIndex = 2 To 3
+                Sheet8.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet8.Cells(RwIndex1 + 1, ColIndex) = Sheet13.Cells(RwIndex, ColIndex)
+                
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+End If
+
+'配电题库提取
+If OptionButton3.Value = True Then
+    Sheet1.Cells(2, 1) = "配电" & Chr(10) & "安规"
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet11.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet6.Cells(1, 1) = "题号"
+        Sheet6.Cells(1, 2) = "题目"
+        Sheet6.Cells(1, 3) = "选1"
+        Sheet6.Cells(1, 4) = "选2"
+        Sheet6.Cells(1, 5) = "选3"
+        Sheet6.Cells(1, 6) = "选4"
+        Sheet6.Cells(1, 7) = "选5"
+        Sheet6.Cells(1, 8) = "答案"
+        If Sheet11.Cells(RwIndex, 1) = "配电" Then
+            For ColIndex = 2 To 8
+                Sheet6.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet6.Cells(RwIndex1 + 1, ColIndex) = Sheet11.Cells(RwIndex, ColIndex)
+               
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+    
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet12.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet7.Cells(1, 1) = "题号"
+        Sheet7.Cells(1, 2) = "题目"
+        Sheet7.Cells(1, 3) = "选1"
+        Sheet7.Cells(1, 4) = "选2"
+        Sheet7.Cells(1, 5) = "选3"
+        Sheet7.Cells(1, 6) = "选4"
+        Sheet7.Cells(1, 7) = "选5"
+        Sheet7.Cells(1, 8) = "答案"
+        If Sheet12.Cells(RwIndex, 1) = "配电" Then
+            For ColIndex = 2 To 8
+                Sheet7.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet7.Cells(RwIndex1 + 1, ColIndex) = Sheet12.Cells(RwIndex, ColIndex)
+                
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet13.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet8.Cells(1, 1) = "题号"
+        Sheet8.Cells(1, 2) = "题目"
+        Sheet8.Cells(1, 3) = "答案"
+        If Sheet13.Cells(RwIndex, 1) = "配电" Then
+            For ColIndex = 2 To 3
+                Sheet8.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet8.Cells(RwIndex1 + 1, ColIndex) = Sheet13.Cells(RwIndex, ColIndex)
+                
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+End If
+
+'基建-变电题库提取
+If OptionButton4.Value = True Then
+    Sheet1.Cells(2, 1) = "基建变电" & Chr(10) & "安规"
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet11.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet6.Cells(1, 1) = "题号"
+        Sheet6.Cells(1, 2) = "题目"
+        Sheet6.Cells(1, 3) = "选1"
+        Sheet6.Cells(1, 4) = "选2"
+        Sheet6.Cells(1, 5) = "选3"
+        Sheet6.Cells(1, 6) = "选4"
+        Sheet6.Cells(1, 7) = "选5"
+        Sheet6.Cells(1, 8) = "答案"
+        If Sheet11.Cells(RwIndex, 1) = "建变" Then
+            For ColIndex = 2 To 8
+                Sheet6.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet6.Cells(RwIndex1 + 1, ColIndex) = Sheet11.Cells(RwIndex, ColIndex)
+               
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+    
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet12.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet7.Cells(1, 1) = "题号"
+        Sheet7.Cells(1, 2) = "题目"
+        Sheet7.Cells(1, 3) = "选1"
+        Sheet7.Cells(1, 4) = "选2"
+        Sheet7.Cells(1, 5) = "选3"
+        Sheet7.Cells(1, 6) = "选4"
+        Sheet7.Cells(1, 7) = "选5"
+        Sheet7.Cells(1, 8) = "答案"
+        If Sheet12.Cells(RwIndex, 1) = "建变" Then
+            For ColIndex = 2 To 8
+                Sheet7.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet7.Cells(RwIndex1 + 1, ColIndex) = Sheet12.Cells(RwIndex, ColIndex)
+                
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet13.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet8.Cells(1, 1) = "题号"
+        Sheet8.Cells(1, 2) = "题目"
+        Sheet8.Cells(1, 3) = "答案"
+        If Sheet13.Cells(RwIndex, 1) = "建变" Then
+            For ColIndex = 2 To 3
+                Sheet8.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet8.Cells(RwIndex1 + 1, ColIndex) = Sheet13.Cells(RwIndex, ColIndex)
+                
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+End If
+
+
+'基建-变电题库提取
+If OptionButton5.Value = True Then
+    Sheet1.Cells(2, 1) = "基建线路" & Chr(10) & "安规"
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet11.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet6.Cells(1, 1) = "题号"
+        Sheet6.Cells(1, 2) = "题目"
+        Sheet6.Cells(1, 3) = "选1"
+        Sheet6.Cells(1, 4) = "选2"
+        Sheet6.Cells(1, 5) = "选3"
+        Sheet6.Cells(1, 6) = "选4"
+        Sheet6.Cells(1, 7) = "选5"
+        Sheet6.Cells(1, 8) = "答案"
+        If Sheet11.Cells(RwIndex, 1) = "建线" Then
+            For ColIndex = 2 To 8
+                Sheet6.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet6.Cells(RwIndex1 + 1, ColIndex) = Sheet11.Cells(RwIndex, ColIndex)
+               
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+    
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet12.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet7.Cells(1, 1) = "题号"
+        Sheet7.Cells(1, 2) = "题目"
+        Sheet7.Cells(1, 3) = "选1"
+        Sheet7.Cells(1, 4) = "选2"
+        Sheet7.Cells(1, 5) = "选3"
+        Sheet7.Cells(1, 6) = "选4"
+        Sheet7.Cells(1, 7) = "选5"
+        Sheet7.Cells(1, 8) = "答案"
+        If Sheet12.Cells(RwIndex, 1) = "建线" Then
+            For ColIndex = 2 To 8
+                Sheet7.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet7.Cells(RwIndex1 + 1, ColIndex) = Sheet12.Cells(RwIndex, ColIndex)
+                
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+
+    RwIndex1 = 1
+    For RwIndex = 2 To 2000
+        If Sheet13.Cells(RwIndex, 1) = "" Then Exit For
+        Sheet8.Cells(1, 1) = "题号"
+        Sheet8.Cells(1, 2) = "题目"
+        Sheet8.Cells(1, 3) = "答案"
+        If Sheet13.Cells(RwIndex, 1) = "建线" Then
+            For ColIndex = 2 To 3
+                Sheet8.Cells(RwIndex1 + 1, 1) = RwIndex1
+                Sheet8.Cells(RwIndex1 + 1, ColIndex) = Sheet13.Cells(RwIndex, ColIndex)
+                
+            Next ColIndex
+            RwIndex1 = RwIndex1 + 1
+        End If
+    Next RwIndex
+End If
+
+
+
+Sheet1.Cells(2, 5) = "专业题库提取完成，请初始化题库！"
+
+UserForm2.Hide
+OptionButton1.Value = False
+OptionButton2.Value = False
+OptionButton3.Value = False
+OptionButton4.Value = False
+OptionButton5.Value = False
+
+
+End Sub
+
+Private Sub CommandButton2_Click()
+UserForm2.Hide
+OptionButton1.Value = False
+OptionButton2.Value = False
+OptionButton3.Value = False
+OptionButton4.Value = False
+OptionButton5.Value = False
+End Sub
+
+Private Sub OptionButton1_Change()
+If OptionButton1.Value = True Then
+    OptionButton1.ForeColor = &HFF&
+Else
+    OptionButton1.ForeColor = &H0&
+End If
+End Sub
+
+
+Private Sub OptionButton2_Change()
+If OptionButton2.Value = True Then
+    OptionButton2.ForeColor = &HFF&
+Else
+    OptionButton2.ForeColor = &H0&
+End If
+End Sub
+
+Private Sub OptionButton3_Change()
+If OptionButton3.Value = True Then
+    OptionButton3.ForeColor = &HFF&
+Else
+    OptionButton3.ForeColor = &H0&
+End If
+End Sub
+
+Private Sub OptionButton4_Change()
+If OptionButton4.Value = True Then
+    OptionButton4.ForeColor = &HFF&
+Else
+    OptionButton4.ForeColor = &H0&
+End If
+End Sub
+
+Private Sub OptionButton5_Change()
+If OptionButton5.Value = True Then
+    OptionButton5.ForeColor = &HFF&
+Else
+    OptionButton5.ForeColor = &H0&
+End If
+End Sub
