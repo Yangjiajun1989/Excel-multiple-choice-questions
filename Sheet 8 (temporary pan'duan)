@@ -1,0 +1,10 @@
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+Dim RwIndex
+For RwIndex = 2 To 10000
+    If Cells(RwIndex, 1) = "" Then Exit For
+    If Trim(Cells(RwIndex, 3)) = "正确" Then Cells(RwIndex, 3) = "true"
+    If Trim(Cells(RwIndex, 3)) = "错误" Then Cells(RwIndex, 3) = "false"
+
+
+Next RwIndex
+End Sub
