@@ -1,0 +1,275 @@
+
+Private Sub CheckBox1_Change()
+    If CheckBox1.Value = True Then
+        CheckBox1.ForeColor = &HFF&
+        
+    Else
+        CheckBox1.ForeColor = &H0&
+    End If
+End Sub
+Private Sub CheckBox2_Change()
+    If CheckBox2.Value = True Then
+        CheckBox2.ForeColor = &HFF&
+        
+    Else
+        CheckBox2.ForeColor = &H0&
+    End If
+End Sub
+Private Sub CheckBox3_Change()
+    If CheckBox3.Value = True Then
+        CheckBox3.ForeColor = &HFF&
+        
+ 
+    Else
+        CheckBox3.ForeColor = &H0&
+    End If
+End Sub
+
+Private Sub CheckBox4_Change()
+    If CheckBox4.Value = True Then
+        CheckBox4.ForeColor = &HFF&
+        
+ 
+    Else
+        CheckBox4.ForeColor = &H0&
+    End If
+End Sub
+
+
+Private Sub CheckBox1_Click()
+
+If UserForm1.Frame1.Caption = "单选题：" Or UserForm1.Frame1.Caption = "判断题：" Then
+    If CheckBox1.Value = True Then
+        CheckBox2.Value = False
+        CheckBox3.Value = False
+        CheckBox4.Value = False
+    End If
+End If
+
+End Sub
+
+Private Sub CheckBox2_Click()
+
+If UserForm1.Frame1.Caption = "单选题：" Or UserForm1.Frame1.Caption = "判断题：" Then
+    If CheckBox2.Value = True Then
+        CheckBox1.Value = False
+        CheckBox3.Value = False
+        CheckBox4.Value = False
+    End If
+End If
+End Sub
+
+Private Sub CheckBox3_Click()
+
+If UserForm1.Frame1.Caption = "单选题：" Then
+    If CheckBox3.Value = True Then
+        CheckBox2.Value = False
+        CheckBox1.Value = False
+        CheckBox4.Value = False
+    End If
+End If
+End Sub
+
+Private Sub CheckBox4_Click()
+
+If UserForm1.Frame1.Caption = "单选题：" Then
+    If CheckBox4.Value = True Then
+        CheckBox2.Value = False
+        CheckBox3.Value = False
+        CheckBox1.Value = False
+    End If
+End If
+End Sub
+
+
+Private Sub CommandButton1_Click()
+Dim Totl, Totl1, Totl2
+UserForm1.Label1.Caption = ""
+
+UserForm1.CheckBox1.Value = False
+UserForm1.CheckBox1.Caption = ""
+UserForm1.CheckBox2.Value = False
+UserForm1.CheckBox2.Caption = ""
+UserForm1.CheckBox3.Value = False
+UserForm1.CheckBox3.Caption = ""
+UserForm1.CheckBox4.Value = False
+UserForm1.CheckBox4.Caption = ""
+UserForm1.TextBox1.Text = ""
+
+
+Totl = 0
+For RwIndex = 2 To Sheet1.Cells(2, 2) + 1
+    If Sheet3.Cells(RwIndex, 9) = False And Sheet3.Cells(RwIndex, 9) <> "" Then Totl = Totl + 1
+Next RwIndex
+
+Totl1 = 0
+For RwIndex = 2 To Sheet1.Cells(2, 3) + 1
+    If Sheet4.Cells(RwIndex, 9) = False And Sheet4.Cells(RwIndex, 9) <> "" Then Totl1 = Totl1 + 1
+Next RwIndex
+
+Totl2 = 0
+For RwIndex = 2 To Sheet1.Cells(2, 4) + 1
+    If Sheet5.Cells(RwIndex, 4) = False And Sheet5.Cells(RwIndex, 4) <> "" Then Totl2 = Totl2 + 1
+Next RwIndex
+
+If KaoJ = Sheet1.Cells(2, 2) + 1 Then UserForm1.Label1 = "已经全部做完！" & "错误题数 " & Totl & " 题"
+
+
+If KaoJ1 = Sheet1.Cells(2, 3) + 1 Then UserForm1.Label1 = "已经全部做完！" & "错误题数 " & Totl1 & " 题"
+
+
+If KaoJ2 = Sheet1.Cells(2, 4) + 1 Then UserForm1.Label1 = "已经全部做完！" & "错误题数 " & Totl2 & " 题"
+
+
+If UserForm1.Frame1.Caption = "单选题：" Then
+    KaoJ = KaoJ + 1
+    UserForm1.TextBox1.Text = Sheet3.Cells(KaoJ, 2)
+    UserForm1.CheckBox1.Caption = " A   " & Sheet3.Cells(KaoJ, 3)
+    UserForm1.CheckBox2.Caption = " B   " & Sheet3.Cells(KaoJ, 4)
+    UserForm1.CheckBox3.Caption = " C   " & Sheet3.Cells(KaoJ, 5)
+    UserForm1.CheckBox4.Caption = " D   " & Sheet3.Cells(KaoJ, 6)
+    Sheet1.Cells(3, 2) = KaoJ - 2
+    If Sheet1.Cells(3, 2) > Sheet1.Cells(2, 2) Then Sheet1.Cells(3, 2) = Sheet1.Cells(2, 2)
+    Sheet1.Cells(3, 2) = Sheet1.Cells(3, 2) & " / " & Totl
+End If
+
+If UserForm1.Frame1.Caption = "多选题：" Then
+    KaoJ1 = KaoJ1 + 1
+    UserForm1.TextBox1.Text = Sheet4.Cells(KaoJ1, 2)
+    UserForm1.CheckBox1.Caption = " A   " & Sheet4.Cells(KaoJ1, 3)
+    UserForm1.CheckBox2.Caption = " B   " & Sheet4.Cells(KaoJ1, 4)
+    UserForm1.CheckBox3.Caption = " C   " & Sheet4.Cells(KaoJ1, 5)
+    UserForm1.CheckBox4.Caption = " D   " & Sheet4.Cells(KaoJ1, 6)
+    Sheet1.Cells(3, 3) = KaoJ1 - 2
+    If Sheet1.Cells(3, 3) > Sheet1.Cells(2, 3) Then Sheet1.Cells(3, 3) = Sheet1.Cells(2, 3)
+    Sheet1.Cells(3, 3) = Sheet1.Cells(3, 3) & " / " & Totl1
+End If
+
+If UserForm1.Frame1.Caption = "判断题：" Then
+    KaoJ2 = KaoJ2 + 1
+    UserForm1.TextBox1.Text = Sheet5.Cells(KaoJ2, 2)
+    UserForm1.CheckBox1.Caption = " 正  确"
+    UserForm1.CheckBox2.Caption = " 错  误"
+    UserForm1.CheckBox3.Visible = False
+    UserForm1.CheckBox4.Visible = False
+    Sheet1.Cells(3, 4) = KaoJ2 - 2
+    If Sheet1.Cells(3, 4) > Sheet1.Cells(2, 4) Then Sheet1.Cells(3, 4) = Sheet1.Cells(2, 4)
+    Sheet1.Cells(3, 4) = Sheet1.Cells(3, 4) & " / " & Totl2
+End If
+
+
+End Sub
+
+
+
+Private Sub CommandButton2_Click()
+Dim Num
+
+UserForm1.Label1.Caption = ""
+If UserForm1.CheckBox1.Value = True Then
+    Str = Str & "A"
+    Str1 = Str1 & "A"
+    Str2 = Str2 & "True"
+End If
+If UserForm1.CheckBox2.Value = True Then
+    Str = Str & "B"
+    Str1 = Str1 & "B"
+    Str2 = Str2 & "False"
+End If
+If UserForm1.CheckBox3.Value = True Then
+    Str = Str & "C"
+    Str1 = Str1 & "C"
+    
+End If
+    
+If UserForm1.CheckBox4.Value = True Then
+    Str = Str & "D"
+    Str1 = Str1 & "D"
+    
+End If
+
+
+
+
+If UserForm1.Frame1.Caption = "单选题：" Then
+    
+    If Sheet3.Cells(KaoJ, 8) = "A" Then UserForm1.CheckBox1.Value = True
+    If Sheet3.Cells(KaoJ, 8) = "B" Then UserForm1.CheckBox2.Value = True
+    If Sheet3.Cells(KaoJ, 8) = "C" Then UserForm1.CheckBox3.Value = True
+    If Sheet3.Cells(KaoJ, 8) = "D" Then UserForm1.CheckBox4.Value = True
+    If Str = Sheet3.Cells(KaoJ, 8) Then
+        UserForm1.Label1.Caption = "正确！ 答案： " & Str
+        Sheet3.Cells(KaoJ, 9) = True
+    Else
+        UserForm1.Label1.Caption = "错误！ 你的答案： " & Str & "；正确答案：  " & Sheet3.Cells(KaoJ, 8)
+        Sheet3.Cells(KaoJ, 9) = False
+    End If
+End If
+
+If UserForm1.Frame1.Caption = "多选题：" Then
+    UserForm1.CheckBox1.Value = False
+    UserForm1.CheckBox2.Value = False
+    UserForm1.CheckBox3.Value = False
+    UserForm1.CheckBox4.Value = False
+    For Num = 1 To Len(Sheet4.Cells(KaoJ1, 8))
+        If Mid(Sheet4.Cells(KaoJ1, 8), Num, 1) = "A" Then UserForm1.CheckBox1.Value = True
+        If Mid(Sheet4.Cells(KaoJ1, 8), Num, 1) = "B" Then UserForm1.CheckBox2.Value = True
+        If Mid(Sheet4.Cells(KaoJ1, 8), Num, 1) = "C" Then UserForm1.CheckBox3.Value = True
+        If Mid(Sheet4.Cells(KaoJ1, 8), Num, 1) = "D" Then UserForm1.CheckBox4.Value = True
+    Next Num
+    If Str1 = Sheet4.Cells(KaoJ1, 8) Then
+        UserForm1.Label1.Caption = "正确！ 答案： " & Str1
+        Sheet4.Cells(KaoJ1, 9) = True
+    Else
+        UserForm1.Label1.Caption = "错误！ 你的答案： " & Str1 & "；正确答案：  " & Sheet4.Cells(KaoJ1, 8)
+        Sheet4.Cells(KaoJ1, 9) = False
+    End If
+End If
+
+If UserForm1.Frame1.Caption = "判断题：" Then
+    If Sheet5.Cells(KaoJ2, 3) = True Then
+        If UserForm1.CheckBox1 = True Then
+            UserForm1.Label1.Caption = " 对！"
+            Sheet5.Cells(KaoJ2, 4) = True
+        Else
+            UserForm1.Label1.Caption = " 错！"
+            Sheet5.Cells(KaoJ2, 4) = False
+        End If
+    End If
+    If Sheet5.Cells(KaoJ2, 3) = False Then
+        If UserForm1.CheckBox1 = True Then
+            UserForm1.Label1.Caption = " 错！"
+            Sheet5.Cells(KaoJ2, 4) = False
+        Else
+            UserForm1.Label1.Caption = " 对！ "
+            Sheet5.Cells(KaoJ2, 4) = True
+        End If
+    End If
+    
+End If
+    
+
+Str = ""
+Str1 = ""
+Str2 = ""
+End Sub
+
+Private Sub CommandButton3_Click()
+UserForm1.Label1.Caption = ""
+
+UserForm1.Hide
+UserForm1.CheckBox1.Value = False
+UserForm1.CheckBox1.Caption = ""
+UserForm1.CheckBox2.Value = False
+UserForm1.CheckBox2.Caption = ""
+UserForm1.CheckBox3.Value = False
+UserForm1.CheckBox3.Caption = ""
+UserForm1.CheckBox4.Value = False
+UserForm1.CheckBox4.Caption = ""
+UserForm1.TextBox1.Text = ""
+End Sub
+
+
+Private Sub UserForm_Click()
+
+End Sub
