@@ -1,0 +1,26 @@
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+Dim RwIndex, Num, Tol
+Dim Str
+
+
+For RwIndex = 2 To 10000
+    If Cells(RwIndex, 1) = "" Then Exit For
+    Num = Len(Cells(RwIndex, 8))
+    Str = ""
+    For Tol = 1 To Num
+        If Mid(Cells(RwIndex, 8), Tol, 1) = 1 Then Str = Str & "A"
+        If Mid(Cells(RwIndex, 8), Tol, 1) = 2 Then Str = Str & "B"
+        If Mid(Cells(RwIndex, 8), Tol, 1) = 3 Then Str = Str & "C"
+        If Mid(Cells(RwIndex, 8), Tol, 1) = 4 Then Str = Str & "D"
+        If Mid(Cells(RwIndex, 8), Tol, 1) = 5 Then Str = Str & "E"
+    
+    Next Tol
+    If Str <> "" Then Cells(RwIndex, 8) = Str
+    For ColIndex = 3 To 6
+        If Cells(RwIndex, ColIndex) Like "*" & Chr(13) & "*" Then Cells(RwIndex, ColIndex) = Replace(Cells(RwIndex, ColIndex), Chr(13), "", , , vbTextCompare)
+        If Cells(RwIndex, ColIndex) Like "*" & Chr(10) & "*" Then Cells(RwIndex, ColIndex) = Replace(Cells(RwIndex, ColIndex), Chr(10), "", , , vbTextCompare)
+        Cells(RwIndex, ColIndex) = Trim(Cells(RwIndex, ColIndex))
+    Next ColIndex
+Next RwIndex
+
+End Sub
