@@ -1,0 +1,325 @@
+Public KaoJ, KaoJ1, KaoJ2, I, I1, I2 As Integer
+Public Str, Str1, Str2, StrCh, ChBox, Fx(500), Fx1(500), Fx2(500), Sa(4)
+
+Sub 单选()
+Str = ""
+
+Sheet1.Cells(2, 5) = "开始做题了！"
+UserForm1.CheckBox3.Visible = True
+UserForm1.CheckBox4.Visible = True
+UserForm1.Label1.Caption = ""
+For KaoJ = 2 To Sheet1.Cells(2, 2) + 1
+    If Sheet3.Cells(KaoJ, 9) = "" Then Exit For
+Next KaoJ
+
+UserForm1.Frame1.Caption = "单选题："
+
+UserForm1.TextBox1.Text = Sheet3.Cells(KaoJ, 2)
+UserForm1.CheckBox1.Caption = " A   " & Sheet3.Cells(KaoJ, 3)
+UserForm1.CheckBox2.Caption = " B   " & Sheet3.Cells(KaoJ, 4)
+UserForm1.CheckBox3.Caption = " C   " & Sheet3.Cells(KaoJ, 5)
+UserForm1.CheckBox4.Caption = " D   " & Sheet3.Cells(KaoJ, 6)
+Str = ""
+
+UserForm1.Show
+End Sub
+
+Sub 多选()
+Str1 = ""
+Sheet1.Cells(2, 5) = "开始做题了！"
+UserForm1.CheckBox3.Visible = True
+UserForm1.CheckBox4.Visible = True
+For KaoJ1 = 2 To Sheet1.Cells(2, 3) + 1
+    If Sheet4.Cells(KaoJ1, 9) = "" Then Exit For
+Next KaoJ1
+UserForm1.Frame1.Caption = "多选题："
+
+UserForm1.TextBox1.Text = Sheet4.Cells(KaoJ1, 2)
+UserForm1.CheckBox1.Caption = " A   " & Sheet4.Cells(KaoJ1, 3)
+UserForm1.CheckBox2.Caption = " B   " & Sheet4.Cells(KaoJ1, 4)
+UserForm1.CheckBox3.Caption = " C   " & Sheet4.Cells(KaoJ1, 5)
+UserForm1.CheckBox4.Caption = " D   " & Sheet4.Cells(KaoJ1, 6)
+
+
+
+UserForm1.Show
+End Sub
+
+Sub 判断()
+
+Str2 = ""
+Sheet1.Cells(2, 5) = "开始做题了！"
+UserForm1.Label1.Caption = ""
+For KaoJ2 = 2 To Sheet1.Cells(2, 4) + 1
+    If Sheet5.Cells(KaoJ2, 4) = "" Then Exit For
+Next KaoJ2
+UserForm1.Frame1.Caption = "判断题："
+
+UserForm1.TextBox1.Text = Sheet5.Cells(KaoJ2, 2)
+UserForm1.CheckBox1.Caption = " 正  确"
+UserForm1.CheckBox2.Caption = " 错  误"
+UserForm1.CheckBox3.Visible = False
+UserForm1.CheckBox4.Visible = False
+
+UserForm1.Show
+
+
+
+End Sub
+Sub 章节()
+Sheet1.Cells(2, 5) = ""
+For Each ChBox In UserForm2.Controls
+    If TypeName(ChBox) = "CheckBox" Then
+        ChBox.Value = False
+    End If
+Next
+UserForm2.Show
+
+End Sub
+Sub 重置()
+Dim RwIndex, RwInex1, RwIndex2, ColIndex, I, RKey, RKey1, Str, Str1, Str2, Str3, Lx(800), Sa(4)
+
+
+Str = Sheet1.Cells(2, 1)
+Sheet1.Cells.ClearContents
+Sheet2.Cells.ClearContents
+Sheet3.Cells.ClearContents
+Sheet4.Cells.ClearContents
+Sheet5.Cells.ClearContents
+
+Sheet1.Cells(2, 1) = Str
+Sheet1.Cells(5, 1) = "使用说明：" & Chr(10) & "1、本文件需要微软Office的Excel打开，并启动宏才能使用；" & Chr(10) & "2、第一次使用请先按复习表中的“专业”键选择专业类别，再按“重置”键初始化题库；" & Chr(10) & "3、文件包括4个表单，分别为“复习、单选、多选、判断“，”复习“表是练习题库的主页，其他三个表单是各类型题库表，完成练习后可以至三个表单查看练习结果；" & Chr(10) & "4、”复习“表中有四个功能按钮，”重置“是题库重新初始化（对出题顺序和选项内容进行随机调整，便于大家熟悉题目），”单选、多选、判断“三个按钮是进入各类型题库练习模式。" & Chr(10) & "5、练习模式中有”浏览、取消、确认“三个功能按钮，其中”浏览“是选择好答案后查看正确与否（并将结果记入到三个题型表格中），”取消“是退出练习模式，”确定“是开始做下一题，完成题数和错误数会在“复习”表中显示；" & Chr(10) & "6、三个不同类型题库表单，在完成练习后可以通过筛选方式将错的题目筛选出来；" & Chr(10) & "注：要记录做题结果必须按”浏览“功能键，否则没有做题记录！"
+
+'单选题数量
+For RwIndex = 2 To 5000
+    If Sheet6.Cells(RwIndex, 1) = "" Then Exit For
+Next RwIndex
+Cells(2, 2) = RwIndex - 2
+
+'多选题数量
+For RwIndex = 2 To 5000
+    If Sheet7.Cells(RwIndex, 1) = "" Then Exit For
+Next RwIndex
+Cells(2, 3) = RwIndex - 2
+
+'判断题数量
+For RwIndex = 2 To 5000
+    If Sheet8.Cells(RwIndex, 1) = "" Then Exit For
+Next RwIndex
+Cells(2, 4) = RwIndex - 2
+
+
+
+
+For I = 1 To 800
+    Lx(I) = I
+Next I
+
+ I = Int(Sheet1.Cells(2, 2) * Rnd + 1)
+ Sheet2.Cells(2, 2) = Lx(I)
+ Lx(I) = 0
+RwIndex1 = 2
+For RwIndex = 2 To Sheet1.Cells(2, 2)
+Loop1:
+    I = Int(Sheet1.Cells(2, 2) * Rnd + 1)
+    If Lx(I) = 0 Then
+        GoTo Loop1
+    Else
+        RwIndex1 = RwIndex1 + 1
+        Sheet2.Cells(RwIndex1, 2) = Lx(I)
+        Lx(I) = 0
+    End If
+Next RwIndex
+
+For I = 1 To 800
+    Lx(I) = I
+Next I
+
+ I = Int(Sheet1.Cells(2, 3) * Rnd + 1)
+ Sheet2.Cells(2, 3) = Lx(I)
+ Lx(I) = 0
+RwIndex1 = 2
+For RwIndex = 2 To Sheet1.Cells(2, 3)
+Loop2:
+    I = Int(Sheet1.Cells(2, 3) * Rnd + 1)
+    If Lx(I) = 0 Then
+        GoTo Loop2
+    Else
+        RwIndex1 = RwIndex1 + 1
+        Sheet2.Cells(RwIndex1, 3) = Lx(I)
+        Lx(I) = 0
+    End If
+Next RwIndex
+
+For I = 1 To 800
+    Lx(I) = I
+Next I
+
+ I = Int(Sheet1.Cells(2, 4) * Rnd + 1)
+ Sheet2.Cells(2, 4) = Lx(I)
+ Lx(I) = 0
+RwIndex1 = 2
+For RwIndex = 2 To Sheet1.Cells(2, 4)
+Loop3:
+    I = Int(Sheet1.Cells(2, 4) * Rnd + 1)
+    If Lx(I) = 0 Then
+        GoTo Loop3
+    Else
+        RwIndex1 = RwIndex1 + 1
+        Sheet2.Cells(RwIndex1, 4) = Lx(I)
+        Lx(I) = 0
+    End If
+Next RwIndex
+
+
+For ColIndex = 1 To 8
+        Sheet3.Cells(1, ColIndex) = Sheet6.Cells(1, ColIndex)
+Next ColIndex
+
+For RwIndex = 2 To 800
+    If Sheet2.Cells(RwIndex, 2) = "" Then Exit For
+    For ColIndex = 1 To 8
+        Sheet3.Cells(RwIndex, ColIndex) = Sheet6.Cells(Sheet2.Cells(RwIndex, 2) + 1, ColIndex)
+    
+    Next ColIndex
+
+Next RwIndex
+
+For ColIndex = 1 To 8
+        Sheet4.Cells(1, ColIndex) = Sheet7.Cells(1, ColIndex)
+Next ColIndex
+
+For RwIndex = 2 To 800
+    If Sheet2.Cells(RwIndex, 3) = "" Then Exit For
+    For ColIndex = 1 To 8
+        Sheet4.Cells(RwIndex, ColIndex) = Sheet7.Cells(Sheet2.Cells(RwIndex, 3) + 1, ColIndex)
+    
+    Next ColIndex
+
+Next RwIndex
+
+For ColIndex = 1 To 3
+        Sheet5.Cells(1, ColIndex) = Sheet8.Cells(1, ColIndex)
+Next ColIndex
+
+For RwIndex = 2 To 800
+    If Sheet2.Cells(RwIndex, 4) = "" Then Exit For
+    For ColIndex = 1 To 3
+        Sheet5.Cells(RwIndex, ColIndex) = Sheet8.Cells(Sheet2.Cells(RwIndex, 4) + 1, ColIndex)
+    
+    Next ColIndex
+
+Next RwIndex
+
+For J = 1 To 3
+    For RwIndex = 2 To Sheet1.Cells(2, 2) + 1
+        RKey = Int(4 * Rnd + 1)
+        Str = Sheet3.Cells(RwIndex, RKey + 2)
+        If Sheet3.Cells(RwIndex, 8) = "A" Then
+             Sheet3.Cells(RwIndex, RKey + 2) = Sheet3.Cells(RwIndex, 3)
+             Sheet3.Cells(RwIndex, 3) = Str
+             Sheet3.Cells(RwIndex, 8) = RKey
+        End If
+         If Sheet3.Cells(RwIndex, 8) = "B" Then
+             Sheet3.Cells(RwIndex, RKey + 2) = Sheet3.Cells(RwIndex, 4)
+             Sheet3.Cells(RwIndex, 4) = Str
+             Sheet3.Cells(RwIndex, 8) = RKey
+        End If
+         If Sheet3.Cells(RwIndex, 8) = "C" Then
+             Sheet3.Cells(RwIndex, RKey + 2) = Sheet3.Cells(RwIndex, 5)
+             Sheet3.Cells(RwIndex, 5) = Str
+             Sheet3.Cells(RwIndex, 8) = RKey
+        End If
+         If Sheet3.Cells(RwIndex, 8) = "D" Then
+             Sheet3.Cells(RwIndex, RKey + 2) = Sheet3.Cells(RwIndex, 6)
+             Sheet3.Cells(RwIndex, 6) = Str
+             Sheet3.Cells(RwIndex, 8) = RKey
+        End If
+        
+        If Sheet3.Cells(RwIndex, 8) = 1 Then Sheet3.Cells(RwIndex, 8) = "A"
+        If Sheet3.Cells(RwIndex, 8) = 2 Then Sheet3.Cells(RwIndex, 8) = "B"
+        If Sheet3.Cells(RwIndex, 8) = 3 Then Sheet3.Cells(RwIndex, 8) = "C"
+        If Sheet3.Cells(RwIndex, 8) = 4 Then Sheet3.Cells(RwIndex, 8) = "D"
+        
+    Next RwIndex
+Next J
+
+For J = 1 To 3
+    For RwIndex = 2 To Sheet1.Cells(2, 3) + 1
+        RKey = Int(4 * Rnd + 1)
+        RKey1 = Int(4 * Rnd + 1)
+        For I = 1 To 4
+            Sa(I) = ""
+        Next I
+        Str3 = ""
+        Str = Sheet4.Cells(RwIndex, RKey + 2)
+        Str1 = Sheet4.Cells(RwIndex, RKey1 + 2)
+        For I = 1 To Len(Sheet4.Cells(RwIndex, 8))
+            Str3 = Mid(Sheet4.Cells(RwIndex, 8), I, 1)
+            If Str3 = "A" Then
+                Sa(1) = "Y"
+            End If
+            If Str3 = "B" Then
+                Sa(2) = "Y"
+               
+            End If
+            If Str3 = "C" Then
+                Sa(3) = "Y"
+                
+            End If
+            If Str3 = "D" Then
+                Sa(4) = "Y"
+            End If
+        Next I
+        
+        
+        Str2 = Sheet4.Cells(RwIndex, RKey + 2)
+        Sheet4.Cells(RwIndex, RKey + 2) = Sheet4.Cells(RwIndex, RKey1 + 2)
+        Sheet4.Cells(RwIndex, RKey1 + 2) = Str2
+        
+        If Sa(RKey) = "Y" Then
+            If Sa(RKey1) = "" Then
+                Sa(RKey1) = "Y"
+                Sa(RKey) = ""
+            End If
+        Else
+            If Sa(RKey1) = "Y" Then
+                Sa(RKey1) = ""
+                Sa(RKey) = "Y"
+            End If
+        End If
+        If Sa(1) = "Y" Then Sa(1) = "A"
+        If Sa(2) = "Y" Then Sa(2) = "B"
+        If Sa(3) = "Y" Then Sa(3) = "C"
+        If Sa(4) = "Y" Then Sa(4) = "D"
+        
+        Sheet4.Cells(RwIndex, 8) = Sa(1) & Sa(2) & Sa(3) & Sa(4)
+    Next RwIndex
+Next J
+
+    For RwIndex = 2 To Sheet1.Cells(2, 2)
+        For ColIndex = 3 To 7
+            If Left(Sheet3.Cells(RwIndex, ColIndex), 1) = "." Then Sheet3.Cells(RwIndex, ColIndex) = "0" & Sheet3.Cells(RwIndex, ColIndex)
+        Next ColIndex
+    
+    Next RwIndex
+    For RwIndex = 2 To Sheet1.Cells(2, 3)
+        For ColIndex = 3 To 7
+            If Left(Sheet4.Cells(RwIndex, ColIndex), 1) = "." Then Sheet4.Cells(RwIndex, ColIndex) = "0" & Sheet4.Cells(RwIndex, ColIndex)
+        Next ColIndex
+    
+    Next RwIndex
+
+    Sheet3.Cells(1, 9) = "正确与否"
+    Sheet4.Cells(1, 9) = "正确与否"
+    Sheet5.Cells(1, 4) = "正确与否"
+
+    Sheet3.Columns("A:I").AutoFilter
+    Sheet4.Columns("A:I").AutoFilter
+    Sheet5.Columns("A:D").AutoFilter
+Sheet1.Cells(2, 5) = "完成初始化，可以开始练习了！"
+End Sub
+
+Sub 专业()
+UserForm2.Show
+End Sub
